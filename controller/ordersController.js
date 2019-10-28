@@ -10,7 +10,7 @@ export class OrdersController {
     };
 
     async createPizza(req, res) {
-        await res.render("succeeded", await orderStore.add(req.body.name, "unkown"));
+        await res.render("succeeded", await orderStore.add(req.body, "unkown"));
     };
 
     async showOrder(req, res) {

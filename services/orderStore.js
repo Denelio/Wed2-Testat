@@ -9,23 +9,39 @@ export class Order {
     }
 }
 
+class Note {
+    constructor(noteData) {
+        this.state = 'active';
+        this.title = noteData.title;
+        this.content = noteData.content;
+        this.importance = noteData.importance;
+        this.date_due = noteData.date_due;
+        this.date = new Date().toISOString();
+    }
+}
+
 export class OrderStore {
     constructor(db) {
-        this.db = db || new Datastore({filename: './data/orders.db', autoload: true});
+        this.db = db || new Datastore({filename: './data/note.db', autoload: true});
     }
 
-    async add(pizzaName, orderedBy) {
-        let order = new Order(pizzaName, orderedBy);
-        return await this.db.insert(order);
+    async add(noteDate) {
+        let note = new Note(noteDate);
+        return await this.db.insert(note);
     }
 
     async delete(id) {
-        await this.db.update({_id: id}, {$set: {"state": "DELETED"}});
+        await this.db.update({_id: id}, {$set: {"state": "finished"}}, { multi: false });
         return await this.get(id);
     }
 
     async get(id) {
         return await this.db.findOne({_id: id});
+    }
+
+    async getAllNotes(callback) {
+        console.log("success");
+        return await this.db.find({}, callback);
     }
 
     async all() {
