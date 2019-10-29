@@ -1,8 +1,10 @@
 import {orderStore} from '../services/orderStore'
 
 export class OrdersController {
-    showIndex(req, res) {
-        res.render("index");
+
+
+    async showIndex(req, res) {
+        await res.render("index" , await orderStore.all());
     };
 
     createOrder(req, res) {

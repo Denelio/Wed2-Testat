@@ -45,7 +45,7 @@ export class OrderStore {
     }
 
     async all() {
-        return await this.db.find({});
+        return { notes: await this.db.find({})};
     }
 }
 
