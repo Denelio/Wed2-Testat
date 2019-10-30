@@ -7,8 +7,8 @@ export class NoteController {
         await res.render("index" , await noteStore.all());
     };
 
-    createOrder(req, res) {
-        res.render("newOrder");
+    createNote(req, res) {
+        res.render("createNote");
     };
 
     async createPizza(req, res) {

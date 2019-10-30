@@ -1,7 +1,9 @@
 <html>
-    <p>Willkommen! Zu der besten Pizzaria auf der Welt!</p>
-    <form action='/note' method='get'><input type='submit' value='Order a Pizza'></form>
-
+    <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
+    <select>
+        <option value="light">Light-Mode</option>
+        <option value="dark">Dark-Mode</option>
+    </select>
     {{#each note}}
         {{title}}<br>
     {{/each}}
