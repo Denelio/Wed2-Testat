@@ -1,14 +1,5 @@
 import Datastore from 'nedb-promise'
 
-export class Order {
-    constructor(pizzaName, orderedBy) {
-        this.orderedBy = orderedBy;
-        this.pizzaName = pizzaName;
-        this.orderDate = new Date();
-        this.state = "OK";
-    }
-}
-
 class Note {
     constructor(noteData) {
         this.state = 'active';
@@ -20,7 +11,7 @@ class Note {
     }
 }
 
-export class OrderStore {
+export class NoteStore {
     constructor(db) {
         this.db = db || new Datastore({filename: './data/note.db', autoload: true});
     }
@@ -45,8 +36,8 @@ export class OrderStore {
     }
 
     async all() {
-        return { notes: await this.db.find({})};
+        return { note: await this.db.find({})};
     }
 }
 
-export const orderStore = new OrderStore();
+export const noteStore = new NoteStore();
