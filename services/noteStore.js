@@ -25,7 +25,8 @@ export class NoteStore {
         await this.db.update({_id: id}, {$set: {"title": noteData.title,
                 "content": noteData.content,
                 "importance": noteData.importance,
-                "date_due": noteData.date_due}}, { multi: false });
+                "date_due": noteData.date_due,
+                "state": noteData.state}}, { multi: false });
         return await this.get(id);
     }
 
