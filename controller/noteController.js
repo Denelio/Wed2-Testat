@@ -12,7 +12,8 @@ export class NoteController {
     };
 
     async createPizza(req, res) {
-        await res.render("succeeded", await noteStore.add(req.body, "unkown"));
+        await await noteStore.add(req.body);
+        await this.showIndex(req, res);
     };
 
     async showNote(req, res) {
