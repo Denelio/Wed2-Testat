@@ -9,6 +9,17 @@
     <button id="byImportanceButton">By Importance</button>
     <button id="showFinishedButton">Show Finished</button>
     {{#each note}}
-        {{title}}<br>
+        <div id="note">
+            <h2>{{title}}</h2>
+            <div>{{content}}</div>
+            <div>
+                {{#times importance}}
+                    <span>*</span>
+                {{/times}}
+            </div>
+            <p><a href='/note/{{_id}}/'>Edit</a></p>
+
+        </div>
+
     {{/each}}
 </html>

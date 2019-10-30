@@ -5,6 +5,7 @@ import path from 'path';
 import {noteRoutes} from './routes/noteRoutes';
 import {registerHelpers} from './utils/handlebar-util'
 import {overrideMiddleware} from "./utils/method-override";
+import {registerTimes} from './utils/times'
 
 
 const app = express();
@@ -12,6 +13,7 @@ app.engine('hbs', hbs.express4());
 app.set('view engine', 'hbs');
 app.set('views', path.resolve('views'));
 registerHelpers(hbs);
+registerTimes(hbs);
 
 const router = express.Router();
 

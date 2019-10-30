@@ -1,14 +1,15 @@
 <html>
 <p>Order-Informationen</p>
 {{#if title}}
-    <p>Title: {{title}}</p>
-    <p>Title: {{content}}</p>
-    <p>Created at: {{date}}</p>
-    <p>Due date: {{date_due}}</p>
-    <p>Importance: {{importance}}</p>
-    <p>Ihre Nummer: {{_id}}</p>
-    <p>State: {{state}}</p>
-    <form action='/note/{{_id}}' method='post'><input type='hidden' name='_method'  value='delete'><input type='submit' value='Delete order'></form>
+    <form action='/note/{{_id}}' method='post'>
+        <input name='title' value="{{title}}">
+        <input name='content' value="{{content}}">
+        <input name='importance' value='{{importance}}'>
+        <input name='state' value='{{state}}'>
+        <input name='date_due' value='{{date_due}}'>
+
+        <input type='submit' value='Update Note'>
+    </form>
 {{/if}}
 <form action='/' method='get'>
     <input type='submit' value='Zurueck zum start'>

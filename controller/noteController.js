@@ -4,7 +4,7 @@ export class NoteController {
 
 
     async showIndex(req, res) {
-        await res.render("index" , await noteStore.all());
+        await res.render("index" , await noteStore.getNotes());
     };
 
     createNote(req, res) {
@@ -15,12 +15,12 @@ export class NoteController {
         await res.render("succeeded", await noteStore.add(req.body, "unkown"));
     };
 
-    async showOrder(req, res) {
+    async showNote(req, res) {
         await res.render("showorder", await noteStore.get(req.params.id));
     };
 
-    async deleteOrder(req, res) {
-        await res.render("showorder", await noteStore.delete(req.params.id));
+    async updateNote(req, res) {
+        await res.render("showorder", await noteStore.updateNote(req.params.id, req.body));
     };
 
 }

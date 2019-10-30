@@ -2,7 +2,7 @@ import Datastore from 'nedb-promise'
 
 class Note {
     constructor(noteData) {
-        this.state = 'active';
+        this.state = typeof noteData.state === 'undefined' ? 'active': noteData.state;
         this.title = noteData.title;
         this.content = noteData.content;
         this.importance = noteData.importance;
@@ -16,13 +16,16 @@ export class NoteStore {
         this.db = db || new Datastore({filename: './data/note.db', autoload: true});
     }
 
-    async add(noteDate) {
-        let note = new Note(noteDate);
+    async add(noteData) {
+        let note = new Note(noteData);
         return await this.db.insert(note);
     }
 
-    async delete(id) {
-        await this.db.update({_id: id}, {$set: {"state": "finished"}}, { multi: false });
+    async updateNote(id, noteData) {
+        await this.db.update({_id: id}, {$set: {"title": noteData.title,
+                "content": noteData.content,
+                "importance": noteData.importance,
+                "date_due": noteData.date_due}}, { multi: false });
         return await this.get(id);
     }
 
@@ -30,12 +33,7 @@ export class NoteStore {
         return await this.db.findOne({_id: id});
     }
 
-    async getAllNotes(callback) {
-        console.log("success");
-        return await this.db.find({}, callback);
-    }
-
-    async all() {
+    async getNotes() {
         return { note: await this.db.find({})};
     }
 }
