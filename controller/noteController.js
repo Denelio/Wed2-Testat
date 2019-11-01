@@ -13,7 +13,7 @@ export class NoteController {
 
     async createPizza(req, res) {
         await await noteStore.add(req.body);
-        await this.showIndex(req, res);
+        res.redirect("/");
     };
 
     async showNote(req, res) {
