@@ -26,12 +26,12 @@
             <div class = "noteTitle">{{title}}</div>
             <div class = "noteState">{{state}}</div>
             <div class = "noteContent">{{content}}</div>
-            <div>
+            <div class = "noteImportance">
                 {{#times importance}}
                     <span>*</span>
                 {{/times}}
             </div>
-            <p><a href='/note/{{_id}}/'>Edit</a></p>
+            <p class = noteEdit><a href='/note/{{_id}}/'>Edit</a></p>
 
         </div>
     {{/each}}
