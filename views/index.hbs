@@ -1,9 +1,16 @@
 <html>
+<head>
+    <title>Notizen</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/styles.css">
+</head>
+<body>
     <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
-    <select>
-        <option value="light">Light-Mode</option>
-        <option value="dark">Dark-Mode</option>
-    </select>
+    <header>
+        <select>
+            <option value="light">Light-Mode</option>
+            <option value="dark">Dark-Mode</option>
+        </select>
+    </header>
     <button id="byFinishButton">By finish Date</button>
     <button id="byCreatedButton">By created Date</button>
     <button id="byImportanceButton">By Importance</button>
@@ -23,4 +30,5 @@
         </div>
 
     {{/each}}
+</body>
 </html>
