@@ -1,25 +1,31 @@
 <html>
 <head>
     <title>Notizen</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-    <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
     <header>
-        <select>
-            <option value="light">Light-Mode</option>
-            <option value="dark">Dark-Mode</option>
-        </select>
+        <div class="theme-switch-wrapper">
+            <p>Enable Dark Mode!</p>
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+        </div>
     </header>
-    <button id="byFinishButton">By finish Date</button>
-    <button id="byCreatedButton">By created Date</button>
-    <button id="byImportanceButton">By Importance</button>
-    <button id="showFinishedButton">Show Finished</button>
+    <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
+    <div>
+        <button id="byFinishButton">By finish Date</button>
+        <button id="byCreatedButton">By created Date</button>
+        <button id="byImportanceButton">By Importance</button>
+        <button id="showFinishedButton">Show Finished</button>
+    </div>
+    {{#if note}}
     {{#each note}}
         <div id="note">
-            <h2>{{title}}</h2>
-            <div>{{state}}</div>
-            <div>{{content}}</div>
+            <div class = "noteTitle">{{title}}</div>
+            <div class = "noteState">{{state}}</div>
+            <div class = "noteContent">{{content}}</div>
             <div>
                 {{#times importance}}
                     <span>*</span>
@@ -28,7 +34,9 @@
             <p><a href='/note/{{_id}}/'>Edit</a></p>
 
         </div>
-
     {{/each}}
+    {{else}}
+        <div>No notes found.</div>
+    {{/if}}
 </body>
 </html>
