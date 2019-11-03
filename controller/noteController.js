@@ -4,7 +4,14 @@ export class NoteController {
 
 
     async showIndex(req, res) {
-        await res.render("index" , await noteStore.getNotes());
+
+        //console.log(notes);
+        //await res.render("index" , await noteStore.getNotes());
+        //await res.render("index", {note : notes, theme: "dark"});
+        let test = req.query.theme;
+        console.log(test);
+        let notes = await noteStore.getNotes(req.query.state);
+        res.render('index', {note: notes, theme: req.query.theme, state : req.query.state});
     };
 
     createNote(req, res) {

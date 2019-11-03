@@ -6,19 +6,15 @@
 <body>
     <header>
         <div class="theme-switch-wrapper">
-            <p>Enable Dark Mode!</p>
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"></div>
-            </label>
+        <a href="?theme={{#equal theme "dark"}}light {{else}}dark {{/equal}}"> {{#equal theme "dark"}}light mode {{else}}dark mode {{/equal}}</a>
         </div>
     </header>
     <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
     <div>
-        <button id="byFinishButton">By finish Date</button>
-        <button id="byCreatedButton">By created Date</button>
-        <button id="byImportanceButton">By Importance</button>
-        <button id="showFinishedButton">Show Finished</button>
+        <a href="?sort=finisDate"> <button id="byFinishButton">By finish Date</button></a>
+        <a href="?sort=creationDate"><button id="byCreatedButton">By created Date</button></a>
+        <a href="?sort=importance"><button id="byImportanceButton">By Importance</button></a>
+        <a href="?state={{#equal state "true"}}false {{else}}true {{/equal}}"><button id="showFinishedButton">Show Finished</button></a>
     </div>
     {{#if note}}
     {{#each note}}
@@ -38,5 +34,12 @@
     {{else}}
         <div>No notes found.</div>
     {{/if}}
+
+{{#equal theme "dark"}}
+    <h3>dark</h3>
+{{else}}
+    <h3>light</h3>
+{{/equal}}
+
 </body>
 </html>
