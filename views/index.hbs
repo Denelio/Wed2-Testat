@@ -11,8 +11,8 @@
     </header>
     <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
     <div>
-        <a href="?sort=finisDate"> <button id="byFinishButton">By finish Date</button></a>
-        <a href="?sort=creationDate"><button id="byCreatedButton">By created Date</button></a>
+        <a href="?sort=date_due"> <button id="byFinishButton">By finish Date</button></a>
+        <a href="?sort=date"><button id="byCreatedButton">By created Date</button></a>
         <a href="?sort=importance"><button id="byImportanceButton">By Importance</button></a>
         <a href="?state={{#equal state "true"}}false {{else}}true {{/equal}}"><button id="showFinishedButton">Show Finished</button></a>
     </div>

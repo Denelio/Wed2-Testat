@@ -36,7 +36,7 @@ export class NoteStore {
 
     async getNotes(state) {
         if(state ==="true"){
-            return this.db.find({state: "active"});
+            return await this.db.find({state: "active"});
         }else{
             return await this.db.find({});
         }

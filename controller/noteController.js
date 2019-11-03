@@ -1,24 +1,31 @@
 import {noteStore} from '../services/noteStore'
 
+let settings = {
+    theme: "",
+    state: "",
+    sort: ""
+};
+
 export class NoteController {
 
 
     async showIndex(req, res) {
-
-        //console.log(notes);
-        //await res.render("index" , await noteStore.getNotes());
-        //await res.render("index", {note : notes, theme: "dark"});
-        let test = req.query.theme;
-        console.log(test);
-        let notes = await noteStore.getNotes(req.query.state);
-        res.render('index', {note: notes, theme: req.query.theme, state : req.query.state});
+        settings.theme = typeof req.query.theme === 'undefined' ? settings.theme: req.query.theme;
+        settings.state = typeof req.query.state === 'undefined' ? settings.state: req.query.state;
+        settings.sort = typeof req.query.sort === 'undefined' ? settings.sort: req.query.sort;
+        console.log("-----------------")
+        console.log("current theme " + settings.theme);
+        console.log("current state " + settings.state);
+        let notes = await noteStore.getNotes(settings.state);
+        notes.sort(sortByProperty(settings.sort));
+        res.render('index', {note: notes, theme: settings.theme, state : settings.state, sort: settings.sort});
     };
 
     createNote(req, res) {
         res.render("createNote");
     };
 
-    async createPizza(req, res) {
+    async addNote(req, res) {
         await await noteStore.add(req.body);
         res.redirect("/");
     };
@@ -31,6 +38,17 @@ export class NoteController {
         await res.render("showorder", await noteStore.updateNote(req.params.id, req.body));
     };
 
+}
+
+function sortByProperty(property){
+    return function(a,b){
+        if(a[property] > b[property])
+            return 1;
+        else if(a[property] < b[property])
+            return -1;
+
+        return 0;
+    }
 }
 
 export const noteController = new NoteController();
