@@ -1,10 +1,12 @@
-<header><h2>Update Note</h2></header>
+<header>
+    <h2>Update Note</h2>
+</header>
     <form action='/note/{{note._id}}' method='post'>
         <label> Titel <input name='title' value="{{note.title}}" required></label>
-        <label>Beschreibung<input name='content' value="{{note.content}}"></label>
+        <label>Beschreibung<textarea name='content' value="{{note.content}}"></textarea></label>
         <label>Importance<input type="number" name='importance' min=1 max=5 value='{{note.importance}}' required></label>
         <label>Finished<input type="checkbox" name='state' value='finished' {{#equal note.state "finished"}}checked{{/equal}}></label>
-        <label>Due Date<input type="date" name='date_due' value='{{note.date_due}}' required></label>
+        <label>Due Date<input name='date_due' value='{{note.date_due}}' required></label>
 
         <input type='submit' value='Update Note'>
     </form>

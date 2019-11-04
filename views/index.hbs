@@ -1,42 +1,38 @@
 <header>
-    <div class="theme-switch-wrapper">
+    <div class="theme-switch">
         <a href="?theme={{#equal theme "dark"}}light {{else}}dark {{/equal}}"> {{#equal theme "dark"}}
-        light mode {{else}}dark mode {{/equal}}</a>
+        Light mode {{else}}Dark mode {{/equal}}</a>
+    </div>
+    <div>
+        <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
     </div>
 </header>
-<form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
-<div>
-    <a href="?sort=date_due">
-        <button id="byFinishButton">By finish Date</button>
-    </a>
-    <a href="?sort=date">
-        <button id="byCreatedButton">By created Date</button>
-    </a>
-    <a href="?sort=importance">
-        <button id="byImportanceButton">By Importance</button>
-    </a>
-    <a href="?state={{#equal state "true"}}false {{else}}true {{/equal}}">
-    <button id="showFinishedButton">Show Finished</button>
-    </a>
-</div>
-{{#if note}}
-    {{#each note}}
-        <div id="note">
-            <div class="noteTitle">{{title}}</div>
-            <div class="noteState">{{state}}</div>
-            <div class="noteContent">{{content}}</div>
-            <div class="noteImportance">
-                {{#times importance}}
-                    <span>*</span>
-                {{/times}}
-            </div>
-            <p class=noteEdit><a href='/note/{{_id}}/'>Edit</a></p>
+<section class="sortButton">
+        <a href="?sort=date_due">By finish Date</a>
+        <a href="?sort=date">By created Date</a>
+        <a href="?sort=importance">By Importance</a>
+        <a href="?state={{#equal state "true"}}false {{else}}true {{/equal}}">Show Finished</a>
+</section>
+<main>
+    {{#if note}}
+        {{#each note}}
+            <div class="note">
+                <div class="noteTitle">{{title}}</div>
+                <div class="noteState">{{state}}</div>
+                <div class="noteContent">{{content}}</div>
+                <div class="noteImportance">
+                    {{#times importance}}
+                        <span>*</span>
+                    {{/times}}
+                </div>
+                <p class=noteEdit><a href='/note/{{_id}}/'>Edit</a></p>
 
-        </div>
-    {{/each}}
-{{else}}
-    <div>No notes found.</div>
-{{/if}}
+            </div>
+        {{/each}}
+    {{else}}
+        <div>No notes found.</div>
+    {{/if}}
+</main>
 
 {{#equal theme "dark"}}
     <h3>dark</h3>

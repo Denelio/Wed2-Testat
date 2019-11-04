@@ -1,12 +1,10 @@
-<html>
-    <p>Neue Notiz erstellen:</p>
-    <form action='/note' method='post'>
-        <input name='title' placeholder="title" placeholder='title'>
-        <input name='content' placeholder='content'>
-        <input name='importance' placeholder='importance'>
-        <input name='date_due' placeholder='date_due'>
+<p>Neue Notiz erstellen:</p>
+<form action='/note' method='post'>
+    <input name='title' placeholder="title" placeholder='title' required>
+    <textarea name='content' placeholder='content' required></textarea>
+    <input name='importance' placeholder='importance' min="1" max="5">
+    <input name='date_due' placeholder='date_due (dd.mm.yyy)' required pattern="\d{1,2}\.\d{1,2}\.\d{4}">
 
-        <input type='submit' value='Speichern'>
-    </form>
-    <a href="/"><button>Abbrechen</button></a>
-</html>
+    <input type='submit' value='Speichern'>
+</form>
+<a href="/">Abbrechen</a>
