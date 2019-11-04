@@ -10,13 +10,14 @@ export class NoteController {
 
 
     async showIndex(req, res) {
+        settings.theme = typeof req.query.theme === 'undefined' ? settings.theme: req.query.theme;
+        settings.state = typeof req.query.state === 'undefined' ? settings.state: req.query.state;
+
         if(settings.sort === req.query.sort){
             settings.sort = " ";
         }else {
             settings.sort = typeof req.query.sort === 'undefined' ? settings.sort: req.query.sort;
         }
-        settings.theme = typeof req.query.theme === 'undefined' ? settings.theme: req.query.theme;
-        settings.state = typeof req.query.state === 'undefined' ? settings.state: req.query.state;
 
 
         console.log("-----------------");
@@ -38,11 +39,11 @@ export class NoteController {
 
     async showNote(req, res) {
         let note = await noteStore.get(req.params.id);
-        await res.render("showorder", {layout: 'layout', note: note});
+        await res.render("shownote", {layout: 'layout', note: note});
     };
 
     async updateNote(req, res) {
-        await res.render("showorder", await noteStore.updateNote(req.params.id, req.body));
+        await res.render("shownote", await noteStore.updateNote(req.params.id, req.body));
         res.redirect("/");
     };
 

@@ -26,7 +26,8 @@ export class NoteStore {
                 "content": noteData.content,
                 "importance": noteData.importance,
                 "date_due": noteData.date_due,
-                "state": noteData.state}}, { multi: false });
+                "state": typeof noteData.state === 'undefined' ? 'active': noteData.state
+        }}, { multi: false });
         return await this.get(id);
     }
 
