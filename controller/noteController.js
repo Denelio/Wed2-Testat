@@ -32,16 +32,17 @@ export class NoteController {
     };
 
     async addNote(req, res) {
-        await await noteStore.add(req.body);
+        await noteStore.add(req.body);
         res.redirect("/");
     };
 
     async showNote(req, res) {
-        await res.render("showorder", await noteStore.get(req.params.id), {layout: 'layout'});
+        let note = await noteStore.get(req.params.id);
+        await res.render("showorder", {layout: 'layout', note: note});
     };
 
     async updateNote(req, res) {
-        await res.render("showorder", await noteStore.updateNote(req.params.id, req.body), {layout: 'layout'});
+        await res.render("showorder", await noteStore.updateNote(req.params.id, req.body));
         res.redirect("/");
     };
 
