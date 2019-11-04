@@ -34,12 +34,26 @@ export class NoteStore {
         return await this.db.findOne({_id: id});
     }
 
-    async getNotes(state) {
+    async getNotes(state, sort) {
+        let notes = {};
         if(state ==="true"){
-            return await this.db.find({state: "active"});
+            notes =  await this.db.find({state: "active"});
         }else{
-            return await this.db.find({});
+            notes = await this.db.find({});
         }
+
+        return notes.sort(sortByProperty(sort));
+    }
+}
+
+function sortByProperty(property){
+    return function(a,b){
+        if(a[property] > b[property])
+            return 1;
+        else if(a[property] < b[property])
+            return -1;
+
+        return 0;
     }
 }
 

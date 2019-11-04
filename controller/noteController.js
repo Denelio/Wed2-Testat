@@ -10,15 +10,21 @@ export class NoteController {
 
 
     async showIndex(req, res) {
+        if(settings.sort === req.query.sort){
+            settings.sort = " ";
+        }else {
+            settings.sort = typeof req.query.sort === 'undefined' ? settings.sort: req.query.sort;
+        }
         settings.theme = typeof req.query.theme === 'undefined' ? settings.theme: req.query.theme;
         settings.state = typeof req.query.state === 'undefined' ? settings.state: req.query.state;
-        settings.sort = typeof req.query.sort === 'undefined' ? settings.sort: req.query.sort;
-        console.log("-----------------")
+
+
+        console.log("-----------------");
         console.log("current theme " + settings.theme);
         console.log("current state " + settings.state);
-        let notes = await noteStore.getNotes(settings.state);
-        notes.sort(sortByProperty(settings.sort));
-        res.render('index', {note: notes, theme: settings.theme, state : settings.state, sort: settings.sort});
+        console.log("current sort " + settings.sort);
+        let notes = await noteStore.getNotes(settings.state, settings.sort);
+        res.render('index', {note: notes, theme: settings.theme, state : settings.state, sort: settings.sort, layout: 'layout'});
     };
 
     createNote(req, res) {
@@ -36,19 +42,9 @@ export class NoteController {
 
     async updateNote(req, res) {
         await res.render("showorder", await noteStore.updateNote(req.params.id, req.body));
+        res.redirect("/");
     };
 
-}
-
-function sortByProperty(property){
-    return function(a,b){
-        if(a[property] > b[property])
-            return 1;
-        else if(a[property] < b[property])
-            return -1;
-
-        return 0;
-    }
 }
 
 export const noteController = new NoteController();
