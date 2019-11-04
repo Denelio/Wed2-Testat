@@ -28,7 +28,7 @@ export class NoteController {
     };
 
     createNote(req, res) {
-        res.render("createNote");
+        res.render("createNote", {layout: 'layout'});
     };
 
     async addNote(req, res) {
@@ -37,11 +37,11 @@ export class NoteController {
     };
 
     async showNote(req, res) {
-        await res.render("showorder", await noteStore.get(req.params.id));
+        await res.render("showorder", await noteStore.get(req.params.id), {layout: 'layout'});
     };
 
     async updateNote(req, res) {
-        await res.render("showorder", await noteStore.updateNote(req.params.id, req.body));
+        await res.render("showorder", await noteStore.updateNote(req.params.id, req.body), {layout: 'layout'});
         res.redirect("/");
     };
 

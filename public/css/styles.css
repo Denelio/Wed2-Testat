@@ -66,6 +66,14 @@ button, input {
     transition: .4s;
 }
 
+.dark{
+    background-color: black;
+}
+
+.light{
+    background-color: deepskyblue;
+}
+
 .slider:before {
     background-color: #fff;
     bottom: 4px;
