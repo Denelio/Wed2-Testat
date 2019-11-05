@@ -35,24 +35,30 @@ export class NoteStore {
         return await this.db.findOne({_id: id});
     }
 
-    async getNotes(state, sort) {
+    async getNotes(state, sort, orientation) {
         let notes = {};
-        if(state ==="true"){
+        if(state ==="active"){
             notes =  await this.db.find({state: "active"});
         }else{
             notes = await this.db.find({});
         }
 
-        return notes.sort(sortByProperty(sort));
+        return notes.sort(sortByProperty(sort, orientation));
     }
 }
 
-function sortByProperty(property){
+function sortByProperty(property, orientation){
     return function(a,b){
+        if(orientation === "ascending"){
+            let c = b;
+            b = a;
+            a = c;
+        }
+
         if(a[property] > b[property])
-            return 1;
-        else if(a[property] < b[property])
             return -1;
+        else if(a[property] < b[property])
+            return 1;
 
         return 0;
     }

@@ -8,10 +8,10 @@
     </div>
 </header>
 <section class="sortButton">
-        <a href="?sort=date_due">By finish Date</a>
-        <a href="?sort=date">By created Date</a>
-        <a href="?sort=importance">By Importance</a>
-        <a href="?state={{#equal state "true"}}false {{else}}true {{/equal}}">Show Finished</a>
+        <a href="?sort=date_due&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By finish Date</a>
+        <a href="?sort=date&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By created Date</a>
+        <a href="?sort=importance&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By Importance</a>
+        <a href="?state={{#equal state "active"}}all {{else}}active {{/equal}}">Show Finished</a>
 </section>
 <main>
     {{#if note}}
@@ -39,3 +39,5 @@
 {{else}}
     <h3>light</h3>
 {{/equal}}
+
+{{orientation}}

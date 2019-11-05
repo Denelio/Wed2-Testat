@@ -1,31 +1,32 @@
 import {noteStore} from '../services/noteStore'
+//import {settings} from '../settings
 
 let settings = {
     theme: "",
     state: "",
-    sort: ""
+    sort: "",
+    orientation: ""
 };
 
 export class NoteController {
 
 
     async showIndex(req, res) {
+
         settings.theme = typeof req.query.theme === 'undefined' ? settings.theme: req.query.theme;
         settings.state = typeof req.query.state === 'undefined' ? settings.state: req.query.state;
+        settings.sort = typeof req.query.sort === 'undefined' ? settings.sort: req.query.sort;
+        settings.orientation = typeof req.query.orientation === 'undefined' ? settings.orientation: req.query.orientation;
 
-        if(settings.sort === req.query.sort){
-            settings.sort = " ";
-        }else {
-            settings.sort = typeof req.query.sort === 'undefined' ? settings.sort: req.query.sort;
-        }
+        let notes = await noteStore.getNotes(settings.state, settings.sort, settings.orientation);
 
 
-        console.log("-----------------");
         console.log("current theme " + settings.theme);
         console.log("current state " + settings.state);
         console.log("current sort " + settings.sort);
-        let notes = await noteStore.getNotes(settings.state, settings.sort);
-        res.render('index', {note: notes, theme: settings.theme, state : settings.state, sort: settings.sort, layout: 'layout'});
+        console.log("current  orientation " + req.query.orientation);
+        //let notes = await noteStore.getNotes(settings.state, settings.sort, true);
+        res.render('index', {note: notes, theme: settings.theme, state : settings.state, sort: settings.sort, orientation: settings.orientation, layout: 'layout'});
     };
 
     createNote(req, res) {
