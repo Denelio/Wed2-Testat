@@ -40,11 +40,11 @@ export class NoteController {
 
     async showNote(req, res) {
         let note = await noteStore.get(req.params.id);
-        await res.render("shownote", {layout: 'layout', note: note});
+        res.render("createNote", {layout: 'layout', note: note});
     };
 
     async updateNote(req, res) {
-        await res.render("shownote", await noteStore.updateNote(req.params.id, req.body));
+        await res.render("createNote", await noteStore.updateNote(req.params.id, req.body));
         res.redirect("/");
     };
 

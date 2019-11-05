@@ -1,8 +1,9 @@
 class Settings {
-    constructor(theme, state, sort){
+    constructor(theme, state, sort, orientation){
         this.theme = theme;
         this.state = state;
         this.sort = sort;
+        this.orientation = orientation;
     }
 
     getTheme(){
@@ -27,6 +28,14 @@ class Settings {
 
     setSort(sort){
         this.sort = sort;
+    }
+
+    getOrientation(){
+        return this.orientation;
+    }
+
+    setOrientatin(orientation){
+        this.orientation = orientation;
     }
 }
 

@@ -1,9 +1,10 @@
-<p>Neue Notiz erstellen:</p>
-<form action='/note' method='post'>
-    <input name='title' placeholder="title" placeholder='title' required>
-    <textarea name='content' placeholder='content' required></textarea>
-    <input name='importance' placeholder='importance' min="1" max="5">
-    <input name='date_due' placeholder='date_due (dd.mm.yyy)' required pattern="\d{1,2}\.\d{1,2}\.\d{4}">
+<p>{{#if note}}Edit Note!{{else}}Neue Notiz erstellen:{{/if}}</p>
+<form action='{{#if note}}/note/{{note._id}}{{else}}/note{{/if}}' method='post'>
+    <label> Titel <input name='title' value="{{note.title}}" required></label>
+    <label>Beschreibung<textarea name='content'>{{note.content}}</textarea></label>
+    <label>Importance<input type="number" name='importance' min=1 max=5 value='{{note.importance}}' required></label>
+    {{#if note}}<label>Finished<input type="checkbox" name='state' value='finished' {{#equal note.state "finished"}}checked{{/equal}}></label>{{/if}}
+    <input name='date_due' placeholder='date_due (dd.mm.yyy)' required pattern="\d{1,2}\.\d{1,2}\.\d{4}"  value="{{note.date_due}}">
 
     <input type='submit' value='Speichern'>
 </form>
