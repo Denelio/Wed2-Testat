@@ -16,9 +16,15 @@ header {
     display: inline;
 }
 
+header #newNote{
+    float: left;
+}
+
 header .theme-switch {
     float: right;
-    margin: 1rem 0rem 1rem 1rem;
+    padding-top: 0.8rem;
+    /*float: right;
+    margin: 1rem 0rem 1rem 1rem;*/
 }
 
 .sortButtons {
@@ -38,13 +44,13 @@ button, input[type=submit], a {
     text-align: center;
     text-decoration: none;
     font-size: 1rem;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem 1rem;
     border: none;
     color: white;
     background-color: lightgray;
     color: black;
     border-radius: 0.3rem;
-    margin: 0.5rem 1rem 1rem 0.5rem;
+    margin: 0.5rem 0.3rem 1rem 0.3rem;
 }
 
 .dark button, .dark input[type=submit], .dark a {
@@ -119,42 +125,18 @@ main {
     grid-row: 2 / 3;
 }
 
-
-.dark {
-    background-color: darkblue;
-}
-
-.light {
-    background-color: aliceblue;
-}
-
-input[type=text], input[type=email], input[type=url], input[type=search], select {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid black;
-    background-color: #f2f2f2;
-}
-
-input[type=search] {
-    width: 20%;
-}
-
-input[type=file] {
-    width: 100%;
-    font-size: 1rem;
+#create textarea {
+    resize: none;
+    height: 5rem;
 }
 
 input[type=checkbox] {
     display: block;
-    margin-bottom: 1rem;
+    margin: 0.2rem 0 1rem 0;
 }
 
 .dark {
-    background-color: black;
+    background-color: #121212;
     color: white;
 }
 
@@ -189,22 +171,35 @@ input:focus, textarea:focus, .dark input:focus, .dark textarea:focus {
 }
 
 h2 {
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 0 0.5rem 0.5rem;
     border-bottom: 1px lightgray solid;
 }
 
 .dark input[type=text], .dark input[type=number], .dark input[type=date], .dark textarea {
     color: white;
     border-bottom: 2px solid white;
-    background-color: black;
+    background-color: #121212;
 }
 
 @media only screen and (max-width: 600px) {
     /* For mobile phones: */
-    a, input[type=submit] {
+    a, input[type=submit]{
         float: left;
         width: 100%;
         margin: 0rem 0.1rem 0.1rem 0.1rem;
+    }
+
+    header #newNote{
+        margin-top: 0.5rem;
+        float:left;
+        width: 50%;
+        overflow:hidden;
+    }
+
+    header .theme-switch{
+        padding-top: 0.5rem;
+        width: 40%;
+        overflow:hidden;
     }
 
     .note {

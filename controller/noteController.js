@@ -23,7 +23,7 @@ export class NoteController {
     };
 
     createNote(req, res) {
-        res.render("createNote", {layout: 'layout', theme: settings.getTheme()});
+        res.render("createNote", {layout: 'layout', theme: settings.getTheme(), title: "Create Note"});
     };
 
     async addNote(req, res) {
@@ -33,7 +33,7 @@ export class NoteController {
 
     async showNote(req, res) {
         let note = await noteStore.get(req.params.id);
-        res.render("createNote", {layout: 'layout', theme: settings.getTheme(), note: note});
+        res.render("createNote", {layout: 'layout', theme: settings.getTheme(),title: "Edit Note", note: note});
     };
 
     async updateNote(req, res) {

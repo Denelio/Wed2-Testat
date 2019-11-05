@@ -1,17 +1,17 @@
 <header>
+    <div id="newNote">
+        <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
+    </div>
     <div class="theme-switch">
         <a href="?theme={{#equal theme "dark"}}light {{else}}dark {{/equal}}"> {{#equal theme "dark"}}
         Light mode {{else}}Dark mode {{/equal}}</a>
-    </div>
-    <div>
-        <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
     </div>
 </header>
 <section class="sortButtons">
         <a href="?sort=date_due&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By finish Date</a>
         <a href="?sort=date&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By created Date</a>
         <a href="?sort=importance&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By Importance</a>
-        <a class="showFinished" href="?state={{#equal state "active"}}all {{else}}active {{/equal}}">Show Finished</a>
+    <a class="showFinished" href="?state={{#equal state "active"}}all {{else}}active {{/equal}}"> {{#equal state "active"}}Show Finished{{else}}Hide Finished{{/equal}}</a>
 </section>
 <main>
     {{#if note}}
