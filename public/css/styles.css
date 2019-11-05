@@ -8,12 +8,30 @@
     padding: 0;
 }
 
+header{
+    display: inline;
+}
+
 header .theme-switch {
     float: right;
     margin: 1rem 0rem 1rem 1rem;
 }
 
-button, input, a {
+.sortButtons{
+    width:100%;
+    display: inline-block;
+}
+
+.sortButtons a {
+    display: inline-block;
+}
+
+.showFinished{
+    float: right;
+}
+
+button, input[type=submit], a {
+    text-align: center;
     text-decoration: none;
     font-size: 1rem;
     padding:  0.5rem 0.5rem;
@@ -24,11 +42,11 @@ button, input, a {
     margin: 0.5rem 1rem 1rem 0.5rem;
 }
 
-button:hover, input:hover, a:hover{
+button:hover, input[type=submit]:hover, a:hover{
     color: lightgray;
 }
 
-button:active, input:active, a:active{
+button:active, input[type=submit]:active, a:active{
     -webkit-box-shadow: inset 1px 1px 10px #333;
     -moz-box-shadow:    inset 1px 1px 10px #333;
     box-shadow:         inset 1px 1px 10px #333;
@@ -36,16 +54,12 @@ button:active, input:active, a:active{
 
 @media only screen and (max-width: 600px) {
     /* For mobile phones: */
-    a {
+    a, input{
+        float: left;
         width: 100%;
+        margin: 0rem 0.1rem 0.1rem 0.1rem;
     }
 }
-
-#showFinishedButton {
-    float: right;
-}
-
-textarea, select, input, button, a { outline: none; }
 
 body {
     font-size: 1rem;
@@ -55,56 +69,78 @@ body {
 
 main{
     margin: 5px 10px 5px 10px;
-}
-
-.dark{
-    background-color: black;
-}
-
-.light{
-    background-color: deepskyblue;
+    display: block;
 }
 
 .note {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 2rem;
-    background-color: lightblue;
+    grid-template-columns: 10% auto auto 10%;
+    grid-template-rows: auto auto;
+    margin: 1rem 0.1rem 0.1rem 0.1rem;
+}
+
+.noteDueDate{
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-style: italic;
+    font-size: smaller;
 }
 
 .noteState {
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
 }
 
 .noteTitle {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 1;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
 }
+
 .noteImportance {
-    border: 2px solid black;
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
     text-align: right;
-    grid-column-start: 3;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 1;
 }
 
 .noteContent{
-    grid-column-start: 2;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    border: 1px solid black;
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+    resize: none;
+    width:100%;
+    height:100%;
+    background-color: lightblue;
 }
 
 .noteEdit{
-    grid-column-start: 4;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+}
+
+
+.dark{
+    background-color: darkblue;
+}
+
+.light{
+    background-color: aliceblue;
+}
+
+input[type=text], input[type=email], input[type=url], input[type=search], select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid black;
+    background-color: #f2f2f2;
+}
+
+input[type=search] {
+    width: 20%;
+}
+
+input[type=file]{
+    width: 100%;
+    font-size: 1rem;
 }

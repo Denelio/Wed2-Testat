@@ -7,6 +7,7 @@ import {registerHelpers} from './utils/handlebar-util'
 import {overrideMiddleware} from "./utils/method-override";
 import {registerTimes} from './utils/helpers'
 import {registerEqual} from './utils/helpers'
+import momentHandler from 'handlebars.moment';
 
 
 const app = express();
@@ -16,6 +17,8 @@ app.set('views', path.resolve('views'));
 registerHelpers(hbs);
 registerTimes(hbs);
 registerEqual(hbs);
+
+momentHandler.registerHelpers(hbs);
 
 const router = express.Router();
 

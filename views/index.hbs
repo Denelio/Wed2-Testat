@@ -7,25 +7,26 @@
         <form action='/note' method='get'><input type='submit' id='createNote' value='Create new Note'></form>
     </div>
 </header>
-<section class="sortButton">
+<section class="sortButtons">
         <a href="?sort=date_due&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By finish Date</a>
         <a href="?sort=date&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By created Date</a>
         <a href="?sort=importance&orientation={{#equal orientation "ascending"}}descending{{else}}ascending{{/equal}}">By Importance</a>
-        <a href="?state={{#equal state "active"}}all {{else}}active {{/equal}}">Show Finished</a>
+        <a class="showFinished" href="?state={{#equal state "active"}}all {{else}}active {{/equal}}">Show Finished</a>
 </section>
 <main>
     {{#if note}}
         {{#each note}}
             <div class="note">
+                <time class="noteDueDate" datetime="{{moment note.date_due format='DD-MM-YYYY'}}">{{#moment date "to" date_due }}{{date_due}}{{/moment}}</time>
                 <div class="noteTitle">{{title}}</div>
                 <div class="noteState">{{state}}</div>
-                <div class="noteContent">{{content}}</div>
+                <textarea class="noteContent" readonly>{{content}}</textarea>
                 <div class="noteImportance">
                     {{#times importance}}
                         <span>*</span>
                     {{/times}}
                 </div>
-                <p class=noteEdit><a href='/note/{{_id}}/'>Edit</a></p>
+                <a class="noteEdit" href='/note/{{_id}}/'>Edit</a>
 
             </div>
         {{/each}}
