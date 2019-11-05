@@ -1,5 +1,5 @@
 /* reset */
-*  {
+* {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -7,9 +7,12 @@
     margin: 0;
     padding: 0;
 }
-textarea, select, input, button { outline: none; }
 
-header{
+textarea, select, input, button {
+    outline: none;
+}
+
+header {
     display: inline;
 }
 
@@ -18,8 +21,8 @@ header .theme-switch {
     margin: 1rem 0rem 1rem 1rem;
 }
 
-.sortButtons{
-    width:100%;
+.sortButtons {
+    width: 100%;
     display: inline-block;
 }
 
@@ -27,7 +30,7 @@ header .theme-switch {
     display: inline-block;
 }
 
-.showFinished{
+.showFinished {
     float: right;
 }
 
@@ -35,22 +38,32 @@ button, input[type=submit], a {
     text-align: center;
     text-decoration: none;
     font-size: 1rem;
-    padding:  0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem;
     border: none;
     color: white;
-    background-color: rgb(0, 96, 160);
+    background-color: lightgray;
+    color: black;
     border-radius: 0.3rem;
     margin: 0.5rem 1rem 1rem 0.5rem;
 }
 
-button:hover, input[type=submit]:hover, a:hover{
+.dark button, .dark input[type=submit], .dark a {
+    color: white;
+    background-color: rgb(0, 96, 160);
+}
+
+button:hover, input[type=submit]:hover, a:hover {
+    color: rgb(0, 96, 160);
+}
+
+.dark button:hover, .dark input[type=submit]:hover, .dark a:hover {
     color: lightgray;
 }
 
-button:active, input[type=submit]:active, a:active{
+button:active, input[type=submit]:active, a:active {
     -webkit-box-shadow: inset 1px 1px 10px #333;
-    -moz-box-shadow:    inset 1px 1px 10px #333;
-    box-shadow:         inset 1px 1px 10px #333;
+    -moz-box-shadow: inset 1px 1px 10px #333;
+    box-shadow: inset 1px 1px 10px #333;
 }
 
 
@@ -60,7 +73,7 @@ body {
     counter-reset: section;
 }
 
-main{
+main {
     margin: 5px 10px 5px 10px;
 }
 
@@ -71,7 +84,7 @@ main{
     margin: 1rem 0.1rem 0.1rem 0.1rem;
 }
 
-.noteDueDate{
+.noteDueDate {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     font-style: italic;
@@ -94,24 +107,24 @@ main{
     text-align: right;
 }
 
-.noteContent{
+.noteContent {
     grid-column: 2 / 4;
     grid-row: 2 / 3;
     resize: none;
-    background-color: lightblue;
+    background-color: lightgray;
 }
 
-.noteEdit{
+.noteEdit {
     grid-column: 4 / 5;
     grid-row: 2 / 3;
 }
 
 
-.dark{
+.dark {
     background-color: darkblue;
 }
 
-.light{
+.light {
     background-color: aliceblue;
 }
 
@@ -130,37 +143,37 @@ input[type=search] {
     width: 20%;
 }
 
-input[type=file]{
+input[type=file] {
     width: 100%;
     font-size: 1rem;
 }
 
-input[type=checkbox]{
+input[type=checkbox] {
     display: block;
     margin-bottom: 1rem;
 }
 
-.dark{
+.dark {
     background-color: black;
     color: white;
 }
 
-.light{
+.light {
     background-color: aliceblue;
 }
 
-#create{
+#create {
     position: fixed;
     left: 5%;
     margin-top: 1rem;
     width: 90%;
 }
 
-#create label{
+#create label {
     height: 2rem;
 }
 
-input[type=text], input[type=number],input[type=date], textarea {
+input[type=text], input[type=number], input[type=date], textarea {
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
@@ -171,7 +184,7 @@ input[type=text], input[type=number],input[type=date], textarea {
     background-color: #f2f2f2;
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus, .dark input:focus, .dark textarea:focus {
     border-bottom: 2px solid rgb(0, 96, 160);
 }
 
@@ -188,19 +201,21 @@ h2 {
 
 @media only screen and (max-width: 600px) {
     /* For mobile phones: */
-    a, input{
+    a, input {
         float: left;
         width: 100%;
         margin: 0rem 0.1rem 0.1rem 0.1rem;
     }
 
     .note {
+        border-top: 1px solid lightgray;
         grid-template-columns: 20% auto auto 10%;
         grid-template-rows: auto auto auto;
+        padding-top: 0.5rem;
         margin: 1rem 0.1rem 0.1rem 0.1rem;
     }
 
-    .noteDueDate{
+    .noteDueDate {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
     }
@@ -221,12 +236,12 @@ h2 {
         text-align: center;
     }
 
-    .noteContent{
+    .noteContent {
         grid-column: 1 / 5;
         grid-row: 2 / 3;
     }
 
-    .noteEdit{
+    .noteEdit {
         grid-column: 1 / 2;
         grid-row: 3 / 4;
     }
