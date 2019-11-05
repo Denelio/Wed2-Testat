@@ -18,14 +18,14 @@
         {{#each note}}
             <div class="note">
                 <time class="noteDueDate" datetime="{{moment note.date_due format='DD-MM-YYYY'}}">{{#moment date "to" date_due }}{{date_due}}{{/moment}}</time>
-                <div class="noteTitle">{{title}}</div>
-                <div class="noteState">{{state}}</div>
-                <textarea class="noteContent" readonly>{{content}}</textarea>
+                <div class="noteTitle"><h3>{{title}}</h3></div>
                 <div class="noteImportance">
                     {{#times importance}}
                         <span>*</span>
                     {{/times}}
                 </div>
+                <div class="noteState">{{state}}</div>
+                <textarea class="noteContent" readonly>{{content}}</textarea>
                 <a class="noteEdit" href='/note/{{_id}}/'>Edit</a>
 
             </div>
