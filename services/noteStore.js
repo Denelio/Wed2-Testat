@@ -49,7 +49,7 @@ export class NoteStore {
 
 function sortByProperty(property, orientation){
     return function(a,b){
-        if(orientation === "ascending"){
+        if(orientation === "descending"){
             let c = b;
             b = a;
             a = c;
